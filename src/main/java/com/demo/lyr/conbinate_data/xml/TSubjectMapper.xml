@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.lyr.conbinate_data.mapper.TSubjectMapper">
+
+    <resultMap id="BaseResultMap" type="com.demo.lyr.conbinate_data.entity.TSubjectEntity">
+        <result column="subject_id" property="subjectId"/>
+        <result column="subject_name" property="subjectName"/>
+    </resultMap>
+
+</mapper>

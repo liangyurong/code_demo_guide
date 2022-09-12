@@ -1,0 +1,8 @@
+
+时间格式
+
+查询的时候：yyyy-MM-dd , yyyy-MM-dd HH:mm:ss
+
+
+
+
