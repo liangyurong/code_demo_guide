@@ -1,7 +1,7 @@
 package com.demo.lyr.多线程.三个串口同时卖100张票;
 
 // 线程AB交替输出1-100 （A1B2A3B4A5B6）
-public class Test {
+public class MultiThreadTest {
     public static void main(String[] args) {
         Task task = new Task();
         Thread a = new Thread(task, "线程A");

@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class TestSaleTicket {
     public static void main(String[] args) {
-        Task task = new Task();
+        SaleTask task = new SaleTask();
 
         // 三条线程相当于三个窗口
         Thread t1 = new Thread(task,"窗口1");
@@ -17,7 +17,7 @@ public class TestSaleTicket {
     }
 }
 
-class Task implements Runnable{
+class SaleTask implements Runnable{
 
     private ReentrantLock lock = new ReentrantLock();
 

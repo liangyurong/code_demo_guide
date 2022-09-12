@@ -3,13 +3,13 @@ package com.demo.lyr.design_patterns.策略模式.鸭子.抽象类;
 import com.demo.lyr.design_patterns.策略模式.鸭子.策略接口.FlyBehavior;
 import com.demo.lyr.design_patterns.策略模式.鸭子.策略接口.SwimBehavior;
 
-public abstract class Duck {
+public abstract class AbstractDuck {
 
     protected FlyBehavior flyBehavior;
 
     protected SwimBehavior swimBehavior;
 
-    public Duck(){}
+    public AbstractDuck(){}
 
     public void setFlyBehavior(FlyBehavior flyBehavior) {
         this.flyBehavior = flyBehavior;

@@ -1,6 +1,6 @@
 package com.demo.lyr.hash_conflict;
 
-public class HashTest {
+public class HashConflictTest {
 
     public static void main(String[] args) {
 

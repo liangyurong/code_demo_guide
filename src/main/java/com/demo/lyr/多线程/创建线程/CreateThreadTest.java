@@ -1,6 +1,6 @@
 package com.demo.lyr.多线程.创建线程;
 
-public class Test {
+public class CreateThreadTest {
 
     public static void main(String[] args) throws Exception {
 
