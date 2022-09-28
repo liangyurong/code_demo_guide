@@ -159,11 +159,19 @@
         </dependency>
 
         <!-- excel转pdf工具-->
-        <dependency>
-            <groupId>e-iceblue</groupId>
-            <artifactId>spire.xls</artifactId>
-            <version>4.9.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>e-iceblue</groupId>-->
+<!--            <artifactId>spire.xls</artifactId>-->
+<!--            <version>4.9.0</version>-->
+<!--        </dependency>-->
+
+        <!-- PdfUtils3 -->
+<!--        <dependency>-->
+<!--            <groupId>com.aspose</groupId>-->
+<!--            <artifactId>aspose-cells</artifactId>-->
+<!--            <version>8.2.1</version>-->
+<!--        </dependency>-->
+        <!-- PdfUtils3 -->
 
         <!-- 数据库版本工具 flyway -->
         <!--<dependency>-->
@@ -224,5 +232,8 @@
 
     </dependencies>
 
+    <repositories>
+
+    </repositories>
 
 </project>
