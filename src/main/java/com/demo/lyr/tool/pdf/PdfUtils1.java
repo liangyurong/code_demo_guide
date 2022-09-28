@@ -10,10 +10,10 @@
 // * @date 2022-09-21 19:31
 // */
 //@Api(tags = "PDF工具")
-//public class ChargePdfUtils {
+//public class PdfUtils1 {
 //
 //    public static void main(String[] args) {
-//        ChargePdfUtils.excelToPdf();
+//        PdfUtils1.excelToPdf();
 //    }
 //
 //    @ApiOperation(value = "excel转pdf", notes = "excel转pdf")

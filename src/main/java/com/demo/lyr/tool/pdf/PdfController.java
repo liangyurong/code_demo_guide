@@ -11,7 +11,7 @@ public class PdfController {
     @GetMapping("/getPdf")
     public byte[] getPdf(HttpServletResponse response){
         // 获取pdf的流
-        byte[] bytes = PdfUtils2.excel2Pdf(response);
+        byte[] bytes = null;
         // 返回给客户端
         return bytes;
     }

@@ -54,17 +54,17 @@ public class PdfUtils3 {
     /**
      * excel 转为pdf 输出。
      *
-     * @param sourceFilePath excel文件
-     * @param desFilePathd   pad 输出文件目录
+     * @param sourceFilePath excel文件路径
+     * @param desFilePath   pdf 输出文件目录
      */
-    public static void excel2pdf(String sourceFilePath, String desFilePathd) {
+    public static void excel2pdf(String sourceFilePath, String desFilePath) {
         // 验证License 若不验证则转化出的pdf文档会有水印产生
         if (!getLicense()) {
             return;
         }
         try {
             Workbook wb = new Workbook(sourceFilePath);// 原始excel路径
-            FileOutputStream fileOS = new FileOutputStream(desFilePathd);
+            FileOutputStream fileOS = new FileOutputStream(desFilePath);
             PdfSaveOptions pdfSaveOptions = new PdfSaveOptions();
             pdfSaveOptions.setOnePagePerSheet(true);//把内容放在一张PDF 页面上；
             wb.save(fileOS, pdfSaveOptions);
