@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class PdfController {
 
     @GetMapping("/getPdf")
-    public byte[] getPdf(HttpServletResponse response){
-        // 获取pdf的流
-        byte[] bytes = null;
-        // 返回给客户端
-        return bytes;
+    public void getPdf(HttpServletResponse response) throws Exception{
+        PdfUtils1.saveToPdfStream(response);
     }
 
     @GetMapping("/getHtml")

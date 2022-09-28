@@ -7,6 +7,19 @@ import sun.misc.BASE64Decoder;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+
+
+/**
+ * 需要引入外部jar：aspose-cells-8.5.2.jar
+ *
+ * 无法通过maven引入依赖
+ *
+ *          <dependency>
+ *             <groupId>com.aspose</groupId>
+ *             <artifactId>aspose-cells</artifactId>
+ *             <version>8.2.1</version>
+ *         </dependency>
+ */
 public class PdfUtils3 {
 
     public static void main(String[] args){
