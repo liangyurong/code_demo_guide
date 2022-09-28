@@ -31,6 +31,12 @@ import java.util.Set;
 @Component
 public class EasyExcelUtil {
 
+    // 示例
+    public static void main(String[] args) {
+
+        // response,文件名称，sheet名称，需要导出的数据，
+        // EasyExcelUtil.export(response, "生产工单-报工记录", "报工记录-原始数据", dataList, ReporterRecordExcelVO.class);
+    }
 
     /**
      * 写出一个excel文件到本地

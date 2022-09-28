@@ -38,8 +38,8 @@ public class DateUtils {
      * @return
      */
     public static String getYesterdayStr(){
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String today = df.format(getYesterdayDate());
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    String today = df.format(getYesterdayDate());
         return today;
     }
 
