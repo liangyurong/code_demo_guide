@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -44,6 +45,25 @@ public class IOUtils {
             // 创建目录
             dirFile.mkdirs();
         }
+    }
+
+    /**
+     * 删除某个目录的某个文件
+     * @param catalogName 目录名
+     * @param fileNameList 文件名列表 （带后缀吗？）
+     * @return
+     */
+    public static boolean deleteFilesInCatalog(String catalogName, List<String> fileNameList){
+        return true;
+    }
+
+    /**
+     * 删除某个目录的所有文件
+     * @param catalogName 目录名
+     * @return
+     */
+    public static boolean deleteAllFileInCatalog(String catalogName){
+        return true;
     }
 
 }

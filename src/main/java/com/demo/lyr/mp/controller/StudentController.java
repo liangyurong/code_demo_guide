@@ -1,15 +1,22 @@
 package com.demo.lyr.mp.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.demo.lyr.mp.entity.StudentEntity;
 import com.demo.lyr.mp.entity.dto.StudentDTO;
+import com.demo.lyr.mp.mapper.StudentMapper;
 import com.demo.lyr.mp.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Mp接口
@@ -23,6 +30,17 @@ public class StudentController {
 
     @Resource
     private StudentService studentService;
+
+    @Resource
+    private StudentMapper studentMapper;
+
+    @GetMapping("/test11")
+    public void test11(){
+        LambdaUpdateWrapper<StudentEntity> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(StudentEntity::getNickName,"11").set(StudentEntity::getAge, 35);
+        boolean b = studentService.update(updateWrapper);
+        System.out.println("b=="+b); // true : 更新成功
+    }
 
     /**
      * 多条件分页查询
