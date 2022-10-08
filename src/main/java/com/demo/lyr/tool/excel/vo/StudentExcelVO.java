@@ -1,4 +1,4 @@
-package com.demo.lyr.tool.easy_excel.vo;
+package com.demo.lyr.tool.excel.vo;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;

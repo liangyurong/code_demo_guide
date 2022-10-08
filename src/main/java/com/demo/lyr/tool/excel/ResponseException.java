@@ -1,11 +1,11 @@
-package com.demo.lyr.tool.easy_excel;
+package com.demo.lyr.tool.excel;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * @description: 自定义模块间接口调用失败时主动抛出的异常信息
- * @author: shuang
+ * @author: lyr
  * @time: 2020/6/4
  */
 

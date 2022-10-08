@@ -1,4 +1,4 @@
-package com.demo.lyr.tool.easy_excel;
+package com.demo.lyr.tool.excel;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -11,9 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 /**
- * @author zhuang
- * @description 文件工具类
- * @Date 2021/6/23
+ * 文件工具类
  */
 public class FileUtil {
 

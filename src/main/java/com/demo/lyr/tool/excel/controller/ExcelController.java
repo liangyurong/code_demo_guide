@@ -1,13 +1,13 @@
-package com.demo.lyr.tool.easy_excel.controller;
+package com.demo.lyr.tool.excel.controller;
 
 
-import com.demo.lyr.tool.easy_excel.EasyExcelUtil;
-import com.demo.lyr.tool.easy_excel.vo.StudentExcelVO;
+import com.demo.lyr.tool.excel.EasyExcelUtil;
+import com.demo.lyr.tool.excel.vo.StudentExcelVO;
+import com.demo.lyr.tool.io.IOUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/excel")
-public class EasyExcelController {
+public class ExcelController {
+
+    /**
+     * 下载 /resource/template的文件
+     */
+    @GetMapping("/download1")
+    public void downloadDefaultExcelTemplate(HttpServletResponse response){
+        IOUtils.downloadDefaultExcelTemplate(response);
+    }
+
 
     /**
      * 客户端导出数据到excel

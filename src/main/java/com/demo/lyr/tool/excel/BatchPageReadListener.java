@@ -1,4 +1,4 @@
-package com.demo.lyr.tool.easy_excel;
+package com.demo.lyr.tool.excel;
 
 
 import com.alibaba.excel.annotation.ExcelProperty;

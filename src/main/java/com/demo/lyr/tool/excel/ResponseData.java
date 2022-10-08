@@ -1,4 +1,4 @@
-package com.demo.lyr.tool.easy_excel;
+package com.demo.lyr.tool.excel;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * 前后通讯数据格式
  *
- * @author shuang
+ * @author lyr
  */
 @Data
 @NoArgsConstructor
