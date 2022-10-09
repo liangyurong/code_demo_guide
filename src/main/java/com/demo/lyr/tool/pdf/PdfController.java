@@ -10,7 +10,7 @@ public class PdfController {
 
     @GetMapping("/getPdf")
     public void getPdf(HttpServletResponse response) throws Exception{
-        PdfUtils1.saveToPdfStream(response);
+        PdfUtils.saveToPdfStream(response);
     }
 
     @GetMapping("/getHtml")
