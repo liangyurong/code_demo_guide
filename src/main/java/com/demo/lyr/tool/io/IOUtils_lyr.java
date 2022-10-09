@@ -26,7 +26,7 @@ import java.util.UUID;
  * @date 2022-10-01 02:19
  */
 @Slf4j
-public class IOUtils {
+public class IOUtils_lyr {
 
     /**
      * 字节数组转File
@@ -35,7 +35,7 @@ public class IOUtils {
      */
     public static File byteArrayToFile(byte[] bytes) throws IOException {
         // 路径 todo 哪里的路径，是该class文件下的路径吗
-        String dirPath = PathUtils.getAbsolutePath(IOUtils.class) + File.separator + "xlsTemp";
+        String dirPath = PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + "xlsTemp";
         // 路径+文件名称
         String temFilePath = dirPath + UUID.randomUUID() + Constant.XLSM;
         // 写入字节
@@ -47,16 +47,24 @@ public class IOUtils {
 
     /**
      * 创建新目录
+     * remark: 如果目录已存在，先删除目录和目录里面的所有文件
      * @param catalogName 目录名称
      */
     public static void createCatalog(String catalogName) {
-        // 在target目录下创建temp文件夹
-        String dirPath = PathUtils.getAbsolutePath(IOUtils.class) + File.separator + catalogName;
-        File dirFile = new File(dirPath);
-        if (!dirFile.exists()) {
-            // 创建目录
-            dirFile.mkdirs();
+        try {
+            // 在target目录下创建temp文件夹
+            String dirPath = PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + catalogName;
+            File dirFile = new File(dirPath);
+            if (dirFile.exists()) {
+                // 如果已存在, 删除该目录下所有文件
+                FileUtils.deleteDirectory(dirFile);
+            }
+            boolean isMkdir = dirFile.mkdirs();
+        } catch (IOException e) {
+            log.error("创建一个空临时文件夹失败, {}", e.getMessage());
+            // throw new ResponseException("创建一个空临时文件夹失败");
         }
+
     }
 
     /**
@@ -76,10 +84,23 @@ public class IOUtils {
      * @param catalogPath 目录路径，比如 D:\羽绒333\code_demo_guide\src\main\resources\template
      * @return
      */
-    public static boolean deleteAllFileInCatalog(String catalogPath){
+    public static boolean deleteAllFileInDirectory(String catalogPath){
         File file = new File(catalogPath);
         boolean b = FileUtils.deleteQuietly(file);
         return b;
+    }
+
+    /**
+     * 删除文件夹
+     * @param catalogPath 文件夹路径
+     */
+    public static void deleteDirectory(String catalogPath) {
+        File file = new File(catalogPath);
+        try {
+            FileUtils.deleteDirectory(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
