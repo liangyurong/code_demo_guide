@@ -78,6 +78,22 @@ public class IOUtils_lyr {
     }
 
     /**
+     * 删除目录的所有文件，但不删除目录
+     * @param catalogName 目录名称
+     * @return
+     */
+    public static void deleteAllFile(String catalogName){
+        File dirFile = new File(PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + catalogName);
+        if (dirFile.exists()) {
+            try {
+                FileUtils.cleanDirectory(dirFile);
+            } catch (IOException e) {
+                log.info("删除临时文件夹失败");
+            }
+        }
+    }
+
+    /**
      *
      * 删除某个目录和目录的所有文件
      * remark: import org.apache.commons.io.FileUtils;
