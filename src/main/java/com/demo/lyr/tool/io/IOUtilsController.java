@@ -25,7 +25,7 @@ public class IOUtilsController {
     public void deleteDirectory(){
 //        String catalogPath = "D:\\羽绒333\\code_demo_guide\\target\\classes\\temp";
         String catalogPath = PathUtils.getAbsolutePath(this.getClass()) + File.separator + "temp";
-        IOUtils_lyr.deleteDirectory(catalogPath);
+        IOUtils_LYR.deleteDirectory(catalogPath);
     }
 
     /**
@@ -35,7 +35,7 @@ public class IOUtilsController {
     public void deleteAllFileInCatalog(){
         // String catalogPath = "D:\\羽绒333\\code_demo_guide\\target\\classes\\temp";
         String catalogPath = PathUtils.getAbsolutePath(this.getClass()) + File.separator + "temp";
-        boolean b = IOUtils_lyr.deleteAllFileInDirectory(catalogPath);
+        boolean b = IOUtils_LYR.deleteAllFileInDirectory(catalogPath);
         System.out.println("删除与否："+b);
     }
 
@@ -50,7 +50,7 @@ public class IOUtilsController {
         if(null == multipartFile){
             throw new IOException("没有上传文件");
         }
-        return  IOUtils_lyr.getFileNameFromClient(multipartFile);
+        return  IOUtils_LYR.getFileNameFromClient(multipartFile);
     }
 
 }

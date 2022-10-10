@@ -6,11 +6,13 @@ import com.demo.lyr.tool.excel.ExcelTemplateImportUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
@@ -26,7 +28,19 @@ import java.util.UUID;
  * @date 2022-10-01 02:19
  */
 @Slf4j
-public class IOUtils_lyr {
+public class IOUtils_LYR {
+
+    /**
+     * File转字节数组
+     * remark: 文件多大会导致异常？需要异步处理吗？同步处理在什么情况下会出现问题？
+     */
+    public static byte[] fileToByteArray(File file) throws FileNotFoundException {
+        if(!file.exists()){
+            throw new FileNotFoundException("文件没找到");
+        }
+        return new byte[1024];
+    }
+
 
     /**
      * 字节数组转File
@@ -35,7 +49,7 @@ public class IOUtils_lyr {
      */
     public static File byteArrayToFile(byte[] bytes) throws IOException {
         // 路径 todo 哪里的路径，是该class文件下的路径吗
-        String dirPath = PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + "xlsTemp";
+        String dirPath = PathUtils.getAbsolutePath(IOUtils_LYR.class) + File.separator + "xlsTemp";
         // 路径+文件名称
         String temFilePath = dirPath + UUID.randomUUID() + Constant.XLSM;
         // 写入字节
@@ -53,7 +67,7 @@ public class IOUtils_lyr {
     public static void createCatalog(String catalogName) {
         try {
             // 在target目录下创建temp文件夹
-            String dirPath = PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + catalogName;
+            String dirPath = PathUtils.getAbsolutePath(IOUtils_LYR.class) + File.separator + catalogName;
             File dirFile = new File(dirPath);
             if (dirFile.exists()) {
                 // 如果已存在, 删除该目录下所有文件
@@ -83,7 +97,7 @@ public class IOUtils_lyr {
      * @return
      */
     public static void deleteAllFile(String catalogName){
-        File dirFile = new File(PathUtils.getAbsolutePath(IOUtils_lyr.class) + File.separator + catalogName);
+        File dirFile = new File(PathUtils.getAbsolutePath(IOUtils_LYR.class) + File.separator + catalogName);
         if (dirFile.exists()) {
             try {
                 FileUtils.cleanDirectory(dirFile);
@@ -102,8 +116,7 @@ public class IOUtils_lyr {
      */
     public static boolean deleteAllFileInDirectory(String catalogPath){
         File file = new File(catalogPath);
-        boolean b = FileUtils.deleteQuietly(file);
-        return b;
+        return FileUtils.deleteQuietly(file);
     }
 
     /**

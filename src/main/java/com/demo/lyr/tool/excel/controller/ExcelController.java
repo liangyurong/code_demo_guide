@@ -3,7 +3,7 @@ package com.demo.lyr.tool.excel.controller;
 
 import com.demo.lyr.tool.excel.EasyExcelUtil;
 import com.demo.lyr.tool.excel.vo.StudentExcelVO;
-import com.demo.lyr.tool.io.IOUtils_lyr;
+import com.demo.lyr.tool.io.IOUtils_LYR;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class ExcelController {
      */
     @GetMapping("/download1")
     public void downloadDefaultExcelTemplate(HttpServletResponse response){
-        IOUtils_lyr.downloadDefaultExcelTemplate(response);
+        IOUtils_LYR.downloadDefaultExcelTemplate(response);
     }
 
 
