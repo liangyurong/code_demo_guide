@@ -1,7 +1,7 @@
 package com.demo.lyr.tool.pdf;
 
 import com.alibaba.fastjson.JSONObject;
-import com.demo.lyr.tool.excel.ResponseData;
+import com.demo.lyr.tool.excel_easyexcel.ResponseData;
 import com.spire.xls.Worksheet;
 import com.spire.xls.collections.WorksheetsCollection;
 import io.swagger.annotations.Api;
@@ -16,6 +16,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
         引入依赖即可，不需要直接下载jar包
@@ -40,8 +42,23 @@ import java.nio.charset.StandardCharsets;
 public class PdfUtils {
 
     public static void main(String[] args) {
-        PdfUtils.excelToPdf();
+        testArrayList();
     }
+
+    public static void testArrayList(){
+        List<String> results = new ArrayList<>();
+        results.add("1");
+        results.add("2");
+        results.add("3");
+
+        results.forEach( str -> {
+            if(results.contains(str)){
+                // 抛异常：at java.util.ArrayList.forEach
+                results.remove(str);
+            }
+        } );
+    }
+
 
     @ApiOperation(value = "excel转pdf", notes = "excel转pdf")
     public static void excelToPdf(){
@@ -105,6 +122,32 @@ public class PdfUtils {
             response.getWriter().write(JSONObject.toJSONString(ResponseData.fail()));
         }
     }
+
+
+    /**
+     * word转pdf
+     */
+    public static void  word2Pdf(){
+
+    }
+
+
+    /**
+     * excel流转html流
+     * @return
+     */
+    public static byte[] excel2Html(){
+        return null;
+    }
+
+    /**
+     * html流转pdf流
+     * @return
+     */
+    public static byte[] html2Pdf(){
+        return null;
+    }
+
 
 
 }

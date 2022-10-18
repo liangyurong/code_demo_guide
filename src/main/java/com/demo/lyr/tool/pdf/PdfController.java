@@ -13,12 +13,4 @@ public class PdfController {
         PdfUtils.saveToPdfStream(response);
     }
 
-    @GetMapping("/getHtml")
-    public byte[] getHtml(){
-        // 获取html的流
-        byte[] bytes = PdfUtils2.excel2Html();
-        // 返回给客户端
-        return bytes;
-    }
-
 }

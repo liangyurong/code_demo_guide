@@ -1,5 +1,6 @@
-package com.demo.lyr.tool.excel;
+package com.demo.lyr.tool.excel_easyexcel;
 
+import org.apache.poi.ss.usermodel.Cell;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -7,7 +8,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -22,9 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @Description: excel导出工具类
- * @Author: zhengfu
- * @Date: 2020/12/5
+ * excel导出工具类
  */
 @Slf4j
 public class ExcelUtil {
@@ -90,7 +88,8 @@ public class ExcelUtil {
 
         // 填充色
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        style.setFillForegroundColor(new XSSFColor(new java.awt.Color(226, 239, 218)));
+        //style.setFillForegroundColor(new XSSFColor(new java.awt.Color(226, 239, 218)));
+
         //表格
         setBoarder(style);
         setValue(row, titles, style);
@@ -103,7 +102,7 @@ public class ExcelUtil {
         //内容样式
         XSSFCellStyle contentStyle = workbook.createCellStyle();
         contentStyle.cloneStyleFrom(style);
-        contentStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(255, 255, 255)));
+        //contentStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(255, 255, 255)));
 
         // 第七步，将文件输出到客户端浏览器
         try {
@@ -135,14 +134,14 @@ public class ExcelUtil {
         XSSFCellStyle style = workbook.createCellStyle();
         // 填充色
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        style.setFillForegroundColor(new XSSFColor(new java.awt.Color(226, 239, 218)));
+        //style.setFillForegroundColor(new XSSFColor(new java.awt.Color(226, 239, 218)));
         setBoarder(style);
         style.setAlignment(HorizontalAlignment.CENTER);
 
         //内容样式
         XSSFCellStyle contentStyle = workbook.createCellStyle();
         contentStyle.cloneStyleFrom(style);
-        contentStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(255, 255, 255)));
+        //contentStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(255, 255, 255)));
 
         //设置列宽
         for (int i = 0; i < content.get(0).size(); i++) {
@@ -205,7 +204,7 @@ public class ExcelUtil {
                 if (row.getCell(j) == null) {
                     strings.add("");
                 } else {
-                    row.getCell(j).setCellType(CellType.STRING);
+                    row.getCell(j).setCellType(Cell.CELL_TYPE_STRING);
                     strings.add(row.getCell(j).getStringCellValue().trim());
                 }
             }
@@ -265,7 +264,7 @@ public class ExcelUtil {
         if (cell == null) {
             return null;
         }
-        cell.setCellType(CellType.STRING);
+        cell.setCellType(Cell.CELL_TYPE_STRING);
         return cell.getStringCellValue().trim();
     }
 
@@ -284,7 +283,7 @@ public class ExcelUtil {
             value = cell.getStringCellValue().trim();
         } catch (Exception e) {
             String str = null;
-            if (CellType.FORMULA.equals(cell.getCellType())) {
+            if (Cell.CELL_TYPE_FORMULA==cell.getCellType()) {
                 str = cell.getCellFormula();
             }
             log.error("单元格获取字符内容异常,行标:{},列标:{},公式内容:{}", cell.getRowIndex(), cell.getColumnIndex(), str, e);
@@ -321,7 +320,7 @@ public class ExcelUtil {
             value = cell.getNumericCellValue();
         } catch (Exception e) {
             String str = null;
-            if (CellType.FORMULA.equals(cell.getCellType())) {
+            if (Cell.CELL_TYPE_FORMULA==cell.getCellType()) {
                 str = cell.getCellFormula();
             }
             log.error("单元格获取数字内容异常,行标:{},列标:{},公式内容:{}", cell.getRowIndex(), cell.getColumnIndex(), str, e);
@@ -342,7 +341,7 @@ public class ExcelUtil {
         }
         for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
             Cell cell = row.getCell(c);
-            if (cell != null && !cell.getCellType().equals(CellType.BLANK)) {
+            if (cell != null && cell.getCellType()!=Cell.CELL_TYPE_BLANK) {
                 return false;
             }
         }
@@ -357,7 +356,7 @@ public class ExcelUtil {
     public static void clearSheet(XSSFSheet sheet) {
         for (Row r : sheet) {
             for (Cell c : r) {
-                c.setBlank();
+                c.setCellType(Cell.CELL_TYPE_BLANK);
             }
         }
     }
@@ -380,27 +379,33 @@ public class ExcelUtil {
         if (cell == null) {
             return null;
         }
-        if (cell.getCellType().equals(CellType.STRING)) {
+        if (cell.getCellType()== Cell.CELL_TYPE_STRING) {
             return cell.getStringCellValue().trim();
-        } else if (cell.getCellType().equals(CellType.NUMERIC)) {
+        } else if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC) {
             //获取到科学计数值
             return BigDecimal.valueOf(cell.getNumericCellValue()).toPlainString().trim();
         }
         return null;
     }
 
+    /**
+     *
+     * @param cell
+     * @param formulaEvaluator
+     * @return
+     */
     public static String getStringCellValue(Cell cell, FormulaEvaluator formulaEvaluator) {
         if (cell == null) {
             return null;
         }
-        if (cell.getCellType().equals(CellType.STRING)) {
+        if (cell.getCellType()== Cell.CELL_TYPE_STRING) {
             return cell.getStringCellValue().trim();
-        } else if (cell.getCellType().equals(CellType.NUMERIC)) {
+        } else if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC) {
             //获取到科学计数值
             return BigDecimal.valueOf(cell.getNumericCellValue()).toPlainString().trim();
-        } else if (cell.getCellType().equals(CellType.FORMULA)) {
+        } else if (cell.getCellType()== Cell.CELL_TYPE_FORMULA) {
             CellValue evaluate = formulaEvaluator.evaluate(cell);
-            if (evaluate.getCellType().equals(CellType.NUMERIC)) {
+            if (evaluate.getCellType()== Cell.CELL_TYPE_NUMERIC) {
                 return BigDecimal.valueOf(cell.getNumericCellValue()).toPlainString().trim();
             }
             return evaluate.formatAsString().replace("\"", "").trim();
@@ -419,14 +424,20 @@ public class ExcelUtil {
         return null;
     }
 
+    /**
+     *
+     * @param cell
+     * @param formulaEvaluator
+     * @return
+     */
     public static Date getDateCellValue(Cell cell, FormulaEvaluator formulaEvaluator) {
         if (cell == null) {
             return null;
         }
-        if (formulaEvaluator.evaluateFormulaCell(cell).equals(CellType.BLANK) || formulaEvaluator.evaluateFormulaCell(cell).equals(CellType.ERROR)) {
+        if (formulaEvaluator.evaluateFormulaCell(cell)== Cell.CELL_TYPE_BLANK || formulaEvaluator.evaluateFormulaCell(cell)== Cell.CELL_TYPE_ERROR) {
             return null;
         }
-        if (!formulaEvaluator.evaluateFormulaCell(cell).equals(CellType.STRING) && DateUtil.isCellDateFormatted(cell)) {
+        if (formulaEvaluator.evaluateFormulaCell(cell)!= Cell.CELL_TYPE_STRING && DateUtil.isCellDateFormatted(cell)) {
             double value = cell.getNumericCellValue();
             return DateUtil.getJavaDate(value);
         }
@@ -443,16 +454,15 @@ public class ExcelUtil {
         if (cell == null) {
             return null;
         }
-        if (cell.getCellType().equals(CellType.NUMERIC)
-                || formulaEvaluator.evaluateFormulaCell(cell).equals(CellType.NUMERIC)) {
+        if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC || formulaEvaluator.evaluateFormulaCell(cell)== Cell.CELL_TYPE_NUMERIC) {
             //获取到科学计数值
             return BigDecimal.valueOf(cell.getNumericCellValue()).intValue();
-        }else if (cell.getCellType().equals(CellType.FORMULA)) {
+        }else if (cell.getCellType()== Cell.CELL_TYPE_FORMULA) {
             CellValue evaluate = formulaEvaluator.evaluate(cell);
-            if (evaluate.getCellType().equals(CellType.NUMERIC)) {
+            if (evaluate.getCellType()== Cell.CELL_TYPE_NUMERIC) {
                 return BigDecimal.valueOf(cell.getNumericCellValue()).intValue();
             }
-            if (evaluate.getCellType().equals(CellType.STRING)&& !StringUtils.isBlank(cell.getStringCellValue())) {
+            if (evaluate.getCellType()== Cell.CELL_TYPE_STRING && !StringUtils.isBlank(cell.getStringCellValue())) {
                 if(NumberUtils.isCreatable(cell.getStringCellValue())){
                     return BigDecimal.valueOf(Double.parseDouble(cell.getStringCellValue())).intValue();
                 }
@@ -472,16 +482,15 @@ public class ExcelUtil {
         if (cell == null) {
             return null;
         }
-        if (cell.getCellType().equals(CellType.NUMERIC)
-                || formulaEvaluator.evaluateFormulaCell(cell).equals(CellType.NUMERIC)) {
+        if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC || formulaEvaluator.evaluateFormulaCell(cell)==Cell.CELL_TYPE_NUMERIC) {
             //获取到科学计数值
             return BigDecimal.valueOf(cell.getNumericCellValue()).doubleValue();
-        }else if (cell.getCellType().equals(CellType.FORMULA)) {
+        }else if (cell.getCellType()==Cell.CELL_TYPE_FORMULA) {
             CellValue evaluate = formulaEvaluator.evaluate(cell);
-            if (evaluate.getCellType().equals(CellType.NUMERIC)) {
+            if (evaluate.getCellType()==Cell.CELL_TYPE_NUMERIC) {
                 return BigDecimal.valueOf(cell.getNumericCellValue()).doubleValue();
             }
-            if (evaluate.getCellType().equals(CellType.STRING) && !StringUtils.isBlank(cell.getStringCellValue())) {
+            if (evaluate.getCellType()==Cell.CELL_TYPE_STRING && !StringUtils.isBlank(cell.getStringCellValue())) {
                 if(NumberUtils.isCreatable(cell.getStringCellValue())){
                     return BigDecimal.valueOf(Double.parseDouble(cell.getStringCellValue())).doubleValue();
                 }
@@ -496,15 +505,16 @@ public class ExcelUtil {
      *
      * @param workbook
      */
-    public static void closeWorkBook(Workbook workbook) {
-        if (workbook != null) {
-            try {
-                workbook.close();
-            } catch (IOException e) {
-                log.error("", e);
-            }
-        }
-    }
+//    public static void closeWorkBook(Workbook workbook) {
+//        if (workbook != null) {
+//            try {
+//                // 新版本没有close方法
+//                workbook.close();
+//            } catch (IOException e) {
+//                log.error("", e);
+//            }
+//        }
+//    }
 
     /**
      * 存在公式空行判断
@@ -519,8 +529,8 @@ public class ExcelUtil {
         }
         for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
             Cell cell = row.getCell(c);
-            if (cell != null && !cell.getCellType().equals(CellType.BLANK)) {
-                if (cell.getCellType().equals(CellType.FORMULA)) {
+            if (cell != null && cell.getCellType()!=Cell.CELL_TYPE_BLANK) {
+                if (cell.getCellType()==Cell.CELL_TYPE_FORMULA) {
                     CellValue evaluate = formulaEvaluator.evaluate(cell);
                     if (StringUtils.isNotBlank(evaluate.formatAsString().replace("\"", ""))) {
                         return false;
@@ -544,25 +554,25 @@ public class ExcelUtil {
             return;
         }
         // 不同数据类型处理
-        CellType cellTypeEnum = sourceCell.getCellType();
+        int cellTypeEnum = sourceCell.getCellType();
         switch (cellTypeEnum) {
-            case STRING:
+            case Cell.CELL_TYPE_STRING:
                 targetCell.setCellValue(sourceCell.getStringCellValue());
                 break;
-            case NUMERIC:
+            case Cell.CELL_TYPE_NUMERIC:
                 targetCell.setCellValue(sourceCell.getNumericCellValue());
                 break;
-            case FORMULA:
+            case Cell.CELL_TYPE_FORMULA:
                 targetCell.setCellFormula(sourceCell.getCellFormula());
                 break;
-            case BOOLEAN:
+            case Cell.CELL_TYPE_BOOLEAN:
                 targetCell.setCellValue(sourceCell.getBooleanCellValue());
                 break;
-            case ERROR:
+            case Cell.CELL_TYPE_ERROR:
                 targetCell.setCellValue(sourceCell.getErrorCellValue());
                 break;
             default:
-                targetCell.setBlank();
+                targetCell.setCellType(Cell.CELL_TYPE_BLANK);
                 break;
         }
     }
@@ -596,7 +606,7 @@ public class ExcelUtil {
                 if(row != null){
                     Cell cell = row.getCell(j);
                     if(cell != null){
-                        cell.setBlank();
+                        cell.setCellType(Cell.CELL_TYPE_BLANK);
                     }
                 }
             }
