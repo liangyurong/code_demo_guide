@@ -83,10 +83,10 @@ public class IOUtils_LYR {
     /**
      * 删除某个目录的某个文件 todo
      * @param catalogName 目录名
-     * @param fileNameList 文件名列表 （带后缀吗？）
+     * @param fileName 文件名 (带后缀吗？)
      * @return
      */
-    public static boolean deleteFilesInCatalog(String catalogName, List<String> fileNameList){
+    public static boolean deleteFilesInCatalog(String catalogName, String fileName){
         return true;
     }
 
