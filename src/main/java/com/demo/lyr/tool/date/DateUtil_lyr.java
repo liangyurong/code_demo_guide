@@ -2,6 +2,7 @@ package com.demo.lyr.tool.date;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author liangyurong
  *
  */
-public class DateUtils {
+public class DateUtil_lyr {
     public static void main(String[] args) throws InterruptedException {
         Date date1 = new Date();
         Thread.sleep(10);
@@ -90,5 +91,16 @@ public class DateUtils {
         return date1.before(date2);
     }
 
+    /**
+     * 今天往后加n天
+     * @param n 今天往后加n天
+     * @return yyyy-MM-dd
+     */
+    public static LocalDate main(Long n) {
+        // 今天
+        LocalDate now = LocalDate.now();
+        // 后n天
+        return now.plusDays(2L);
+    }
 
 }
