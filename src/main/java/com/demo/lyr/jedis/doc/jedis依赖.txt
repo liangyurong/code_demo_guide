@@ -1,8 +1,0 @@
-       <com.demo.lyr.jedis.version>3.2.0</com.demo.lyr.jedis.version>
-
-               <!-- com.demo.lyr.jedis -->
-               <dependency>
-                   <groupId>redis.clients</groupId>
-                   <artifactId>com.demo.lyr.jedis</artifactId>
-                   <version>${com.demo.lyr.jedis.version}</version>
-               </dependency>

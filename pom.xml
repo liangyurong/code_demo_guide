@@ -33,6 +33,21 @@
 
     <dependencies>
 
+        <!--Mybatis-Plus代码生成器-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <!--添加该模板引擎才能生成代码-->
+        <!--Velocity模板引擎-->
+        <!--MyBatis-Plus 支持 Velocity（默认）、Freemarker、Beetl，用户可以选择自己熟悉的模板引擎，如果都不满足您的要求，可以采用自定义模板引擎。本文使用默认依赖-->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.2</version>
+        </dependency>
+
         <!--aop 做日志管理-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -89,7 +104,6 @@
             <version>${xxl-job.version}</version>
         </dependency>
 
-        <!--  -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
@@ -103,12 +117,7 @@
             <version>${junit.version}</version>
         </dependency>
 
-        <!-- jedis -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
-        </dependency>
+
         <!-- redis整合springboot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -172,18 +181,6 @@
         <!--<version>${flyway.version}</version>-->
         <!--</dependency>-->
 
-        <!-- spring security -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--</dependency>-->
-
-        <!-- 认证 -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-oauth2</artifactId>-->
-        <!--<version>${spring.oauth2.version}</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -241,6 +238,12 @@
         </dependency>
         <!-- poi,处理excel -->
 
+        <!-- redisson  -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.11.1</version>
+        </dependency>
 
 
     </dependencies>

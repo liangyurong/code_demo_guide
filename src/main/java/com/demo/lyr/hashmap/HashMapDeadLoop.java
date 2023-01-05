@@ -6,7 +6,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ *
+ */
 public class HashMapDeadLoop {
+
+    /**
+     * 这是要干啥？
+     * @param args
+     */
     public static void main(String[] args)  {
 
         ConcurrentHashMap<Object, Object> concurrentHashMap = new ConcurrentHashMap<>();
@@ -29,4 +37,5 @@ public class HashMapDeadLoop {
             ).start();
         }
     }
+
 }

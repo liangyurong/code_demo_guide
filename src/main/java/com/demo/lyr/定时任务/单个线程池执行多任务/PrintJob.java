@@ -15,13 +15,13 @@ public class PrintJob {
     @Async("executor1")
     public void printTest1(){
         // 打印方法和当前线程名称
-        System.out.println("1 run --> "+new Date()+" "+Thread.currentThread().getName());
+        // System.out.println("1 run --> "+new Date()+" "+Thread.currentThread().getName());
     }
 
     @Scheduled(fixedRate = 3000)
     @Async("executor1")
     public void printTest2(){
-        System.out.println("2 run --> "+new Date()+" "+Thread.currentThread().getName());
+        // System.out.println("2 run --> "+new Date()+" "+Thread.currentThread().getName());
   }
 
 }

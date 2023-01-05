@@ -9,8 +9,6 @@ public class AbstractBasic02 {
                 System.out.println("睡觉啦");
             }
         };
-
         animal.sleep(); // 输出“睡觉啦”
-
     }
 }

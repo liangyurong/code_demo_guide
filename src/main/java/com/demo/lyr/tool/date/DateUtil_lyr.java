@@ -68,6 +68,7 @@ public class DateUtil_lyr {
     }
 
     /**
+     * date1是否在date2之后，是：true ， 否：false
      * date1: 2022-08-12 00:00:00
      * date2: 2022-08-22 00:00:00
      * isAfter(date1,date2) : false
