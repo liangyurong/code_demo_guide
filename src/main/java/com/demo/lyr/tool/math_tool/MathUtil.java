@@ -1,9 +1,6 @@
 package com.demo.lyr.tool.math_tool;
 
-
-
 import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -13,8 +10,8 @@ import java.util.regex.Pattern;
 
 /**
  * @description: 数字处理工具类
- * @author: zengfu
- * @create: 2020-06-29 14:10
+ * @author:
+ * @create:
  **/
 public class MathUtil {
 

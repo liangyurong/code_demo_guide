@@ -66,7 +66,7 @@ public class CodeGenerator {
          * mysql数据源配置(需要修改为你的数据源)
          */
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.64.130:3306/test?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://192.168.64.130:3306/qs_fastdfs?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
